@@ -1,0 +1,38 @@
+Design Notes: 
+-------------
+
+Input from the user: 
+
+*) Model (script, .h5, pkl)
+*) Constraints (Latency / Cost / Throughput)
+
+
+
+Decision: 
+---------
+
+*) Decide deployment setup based on model and constraint
+
+
+
+Output: 
+-------
+
+*) Performance characterization
+*) Alternatives
+*) Cost analyses
+
+
+Considerations: 
+---------------
+
+*) Cost of a load balancer part of cost analyses? - This will be ignored in the analysis but discussed in the report
+
+
+Misc. Notes:
+------------
+
+*) Preliminary decision making layer before deployment service
+*) I expect to run the Inference serving system on on-prem hardware with fixed file paths for storage of user models etc.
+*) Vegeta - Go based request generator
+*) Use tag-based project differentiation for separating out experiment/run costs

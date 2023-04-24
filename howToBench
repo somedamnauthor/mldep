@@ -1,0 +1,27 @@
+INFless's Benchmarking: 
+
+*) Use pre-trained models - stored as .pb (protobuf files)
+*) Design workloads based on Azure Function traces - https://github.com/Azure/AzurePublicDataset/blob/master/AzureFunctionsDataset2019.md
+*) Also use Azure VM traces for our use-case?
+
+
+
+Why not MLBench?
+
+*) For distributed models
+*) Seems to be geared towards benchmarking ML model performance and not deployment performance
+
+
+Next Steps:
+
+*) Deploy a standard model (ResNet-50?) as a container and hit it using a load-generator similar to INFless
+
+Define metrics based on memory usage
+
+
+Define experiments to saturate
+Define experiments based on traces
+
+Check mARK metrics!
+
+Use MLPerf Inference, this is a specific sub-variant
