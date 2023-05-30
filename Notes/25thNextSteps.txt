@@ -1,0 +1,30 @@
+Templatize the model code into 3 functions - 
+- Model definition 
+- Preprocessing
+- Predict
+
+Model class called into the wrapper script 
+- Invokes these functions within a flask app
+- Trigger on POST request
+
+Dockerfile
+- Use python base image, add the wrapper, code
+- Installs torch
+- starts app
+
+
+Next Steps:
+- Use OpenWhisk for functions
+- Final objective is to take configs from YAML, use a script to turn that into a set of deployments
+- Libvirt for VMs
+
+Meet Monday 1:45
+
+Track metrics for each of the 3 operations from the wrapper side
+
+-----------------------------------------------------------------
+
+
+libvirt stuff - https://ubuntu.com/server/docs/virtualization-libvirt
+
+

@@ -1,0 +1,9 @@
+Will get libvirt to work on my local by wednesday, was occupied last week
+Will explore openwhisk - set up openwhisk on my local and write the function deployment wrapper
+By Friday, I aim to have libvirt and openwhisk done, some benchmarking over the weekend
+
+
+virtinstall script
+create VM, called domains
+
+Look into load-balancers
