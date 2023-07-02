@@ -1,14 +1,14 @@
 # importing the module
 import re
+import os
+
+os.system("virsh net-dhcp-leases default > ipout.txt")
   
 # opening and reading the file 
 with open('ipout.txt') as fh:
    fstring = fh.readlines()
   
 # declaring the regex pattern for IP addresses
-#pattern = re.compile(r'(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/\d{1,3})')
-#pattern = re.compile(r'^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\/[0-9]{1,3}$')
-#pattern = re.compile(r'^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$')
 pattern = re.compile(r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}(?:/\d{1,2}|)')
 
 # initializing the list object
@@ -23,8 +23,12 @@ for line in fstring:
   
 # displaying the extracted IP addresses
 try:
-    ip = lst[0]
+    ip = lst[0][:-3]
 except:
     pass
 
+command = "sshpass -p 'admin' scp -r ../image_classification/ ubuntu@"+ip+":/home/ubuntu/ml/"
 
+print(command)
+
+os.system(command)
