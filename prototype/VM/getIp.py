@@ -23,12 +23,14 @@ for line in fstring:
   
 # displaying the extracted IP addresses
 try:
-    ip = lst[0][:-3]
+    ip = lst[-1][:-3]
 except:
     pass
 
-command = "sshpass -p 'admin' scp -r ../image_classification/ ubuntu@"+ip+":/home/ubuntu/ml/"
+command = "sshpass -p 'admin' scp -oStrictHostKeyChecking=no -r ../image_classification/ ubuntu@"+ip+":/home/ubuntu/ml/"
 
 print(command)
+
+#os.system("ssh-keygen -R ubuntu@"+ip)
 
 os.system(command)

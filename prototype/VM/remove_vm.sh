@@ -1,5 +1,6 @@
 virsh destroy mldep_vm
-virsh undefine mldep_vm
+virsh undefine mldep_vm --remove-all-storage
 rm -f cidata.iso
-rm jammy-server-cloudimg-amd64.img
+rm mldepimg.img
 rm ipout.txt
+rm -f base_images/jammy.img
