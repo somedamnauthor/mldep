@@ -27,10 +27,19 @@ try:
 except:
     pass
 
-command = "sshpass -p 'admin' scp -oStrictHostKeyChecking=no -r ../image_classification/ ubuntu@"+ip+":/home/ubuntu/ml/"
+copy_command = "sshpass -p 'admin' scp -oStrictHostKeyChecking=no -r ../image_classification/ ubuntu@"+ip+":/home/ubuntu/ml/"
+install_command = "sshpass -p 'admin' ssh ubuntu@"+ip+" 'sh /home/ubuntu/ml/installPackages.sh'"
+start_command = "sshpass -p 'admin' ssh ubuntu@"+ip+" 'python3 /home/ubuntu/ml/wrapper.py'"
 
-print(command)
+#print(command)
 
 #os.system("ssh-keygen -R ubuntu@"+ip)
 
-os.system(command)
+print(copy_command)
+os.system(copy_command)
+
+print(install_command)
+os.system(install_command)
+
+print(start_command)
+os.system(start_command)
