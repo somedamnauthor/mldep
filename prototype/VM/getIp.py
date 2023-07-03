@@ -3,7 +3,7 @@ import re
 import os
 
 os.system("virsh net-dhcp-leases default > ipout.txt")
-  
+
 # opening and reading the file 
 with open('ipout.txt') as fh:
    fstring = fh.readlines()
@@ -30,10 +30,6 @@ except:
 copy_command = "sshpass -p 'admin' scp -oStrictHostKeyChecking=no -r ../image_classification/ ubuntu@"+ip+":/home/ubuntu/ml/"
 install_command = "sshpass -p 'admin' ssh ubuntu@"+ip+" 'sh /home/ubuntu/ml/installPackages.sh'"
 start_command = "sshpass -p 'admin' ssh ubuntu@"+ip+" 'python3 /home/ubuntu/ml/wrapper.py'"
-
-#print(command)
-
-#os.system("ssh-keygen -R ubuntu@"+ip)
 
 print(copy_command)
 os.system(copy_command)
