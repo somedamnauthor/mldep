@@ -38,7 +38,9 @@ class Model:
         return batch_t
 
 
-    def predict(self, model, batch_t, classes_path):
+    def predict(self, model, batch_t):
+
+        classes_path = "input/imagenet_classes.txt"
 
         with open(classes_path) as f:
             classes = [line.strip() for line in f.readlines()]

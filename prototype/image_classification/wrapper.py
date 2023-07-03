@@ -11,13 +11,13 @@ def predict():
 
 	if request.method == 'POST':
 		data_path = request.form['data_path']
-		classes_path = request.form['classes_path']
+		# classes_path = request.form['classes_path']
 
 		model = Model()
 
 		model_definition = model.model_definition()
 		batch_t = model.preprocess_input(data_path)
-		prediction = model.predict(model_definition, batch_t, classes_path)
+		prediction = model.predict(model_definition, batch_t)
 
 		output = {'prediction':prediction}
 
