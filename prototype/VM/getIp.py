@@ -29,7 +29,7 @@ except:
 
 copy_command = "sshpass -p 'admin' scp -oStrictHostKeyChecking=no -r ../image_classification/ ubuntu@"+ip+":/home/ubuntu/ml/"
 install_command = "sshpass -p 'admin' ssh ubuntu@"+ip+" 'sh /home/ubuntu/ml/installPackages.sh'"
-start_command = "sshpass -p 'admin' ssh ubuntu@"+ip+" 'python3 /home/ubuntu/ml/wrapper.py'"
+start_command = "sshpass -p 'admin' ssh ubuntu@"+ip+" 'cd /home/ubuntu/ml; python3 wrapper.py'"
 
 print(copy_command)
 os.system(copy_command)
