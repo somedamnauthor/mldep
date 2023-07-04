@@ -46,7 +46,8 @@ class Model:
 
     def predict(self, model, batch_t):
 
-        classes_path = "input/imagenet_classes.txt"
+        dir_path = os.path.dirname(os.path.realpath(__file__))
+        classes_path = dir_path + "/input/imagenet_classes.txt"
 
         with open(classes_path) as f:
             classes = [line.strip() for line in f.readlines()]
