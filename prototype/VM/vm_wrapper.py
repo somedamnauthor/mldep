@@ -1,33 +1,45 @@
-# importing the module
-import re
 import os
+import time
+import re
 
-os.system("virsh net-dhcp-leases default > ipout.txt")
+net_pre_create = os.popen("virsh net-dhcp-leases default").read()
 
-# opening and reading the file 
-with open('ipout.txt') as fh:
-   fstring = fh.readlines()
-  
+os.system("sh create_vm.sh")
+
+while True:
+
+	net_post_create = os.popen("virsh net-dhcp-leases default").read()
+
+	if net_pre_create != net_post_create:
+		break
+	else:
+		print("VM Wrapper: Waiting for network creation...")
+		time.sleep(3) 
+
+b_s = net_post_create.splitlines()
+a_s = net_pre_create.splitlines()
+
+fstring = [x for x in b_s if x not in a_s]
+
 # declaring the regex pattern for IP addresses
 pattern = re.compile(r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}(?:/\d{1,2}|)')
 
-# initializing the list object
-lst=[]
-  
+lst = []
+
 # extracting the IP addresses
 for line in fstring:
    try:
        lst.append(pattern.search(line)[0])
    except:
        pass
-  
-# displaying the extracted IP addresses
+
+#displaying the extracted IP addresses
 try:
     ip = lst[0][:-3]
 except:
     pass
 
-ip = "192.168.122.139"
+print("IP Address Found:",ip)
 
 copy_command = "sshpass -p 'admin' scp -oStrictHostKeyChecking=no -r ../image_classification/ ubuntu@"+ip+":/home/ubuntu/ml/"
 copy_install_command = "sshpass -p 'admin' scp -oStrictHostKeyChecking=no -r installPackages.sh ubuntu@"+ip+":/home/ubuntu/ml/"
@@ -35,7 +47,13 @@ install_command = "sshpass -p 'admin' ssh ubuntu@"+ip+" 'sh /home/ubuntu/ml/inst
 start_command = "sshpass -p 'admin' ssh ubuntu@"+ip+" 'cd /home/ubuntu/ml; python3 wrapper.py'"
 
 print(copy_command)
-os.system(copy_command)
+while True:
+	if os.system(copy_command)!=0:
+		print("VM Wrapper: Retrying Connection...")
+		time.sleep(1)
+		continue
+	else:
+		break
 
 print(copy_install_command)
 os.system(copy_install_command)
