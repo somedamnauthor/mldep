@@ -1,9 +1,17 @@
-cp Dockerfile ../image_classification/Dockerfile
+#sample usage: sh container_wrapper image_classification
 
-cd ../image_classification
+destination="../models/${1}"
 
-sudo docker build -t image_classifier .
+dockerfile_path="${destination}/Dockerfile"
 
-sudo docker run -d -p 5000:5000 image_classifier
+cp Dockerfile "$dockerfile_path"
+
+cd "${destination}/"
+
+pwd
+
+sudo docker build -t "${1}" .
+
+sudo docker run -d -p 5000:5000 "${1}"
 
 rm Dockerfile

@@ -1,6 +1,16 @@
+"""
+Pre-requisites: Place model files in a folder in the models directory (one level above)
+
+Sample usage: python3 vm_wrapper.py image_classification
+"""
+
 import os
 import time
 import re
+import sys
+
+model_dir = "../models/"+sys.argv[1]+"/"
+print("Model Directory:",model_dir)
 
 net_pre_create = os.popen("virsh net-dhcp-leases default").read()
 
@@ -41,7 +51,7 @@ except:
 
 print("IP Address Found:",ip)
 
-copy_command = "sshpass -p 'admin' scp -oStrictHostKeyChecking=no -r ../image_classification/ ubuntu@"+ip+":/home/ubuntu/ml/"
+copy_command = "sshpass -p 'admin' scp -oStrictHostKeyChecking=no -r "+model_dir+" ubuntu@"+ip+":/home/ubuntu/ml/"
 copy_install_command = "sshpass -p 'admin' scp -oStrictHostKeyChecking=no -r installPackages.sh ubuntu@"+ip+":/home/ubuntu/ml/"
 install_command = "sshpass -p 'admin' ssh ubuntu@"+ip+" 'sh /home/ubuntu/ml/installPackages.sh'"
 start_command = "sshpass -p 'admin' ssh ubuntu@"+ip+" 'cd /home/ubuntu/ml; python3 wrapper.py'"
