@@ -15,3 +15,7 @@ sudo apt install make automake gcc g++ -y
 pip3 install Pillow
 
 pip3 install flask_restful
+
+cd /home/ubuntu/ml/
+
+pip3 install -r requirements.txt

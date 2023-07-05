@@ -18,9 +18,7 @@ COPY . /home/ml
 
 RUN pip3 install flask_restful
 
-#RUN pip3 install -r /home/ml/input/requirements.txt
-
-#ENTRYPOINT ["python3", "/home/ml/wrapper.py"]
+RUN pip3 install -r /home/ml/requirements.txt
 
 EXPOSE 5000
 
