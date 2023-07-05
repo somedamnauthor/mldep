@@ -1,0 +1,7 @@
+Metrics: 
+
+- Min, max and average response times
+- Response time in percentile buckets
+- Module level performance
+- CPU and mem-util
+- Network latency analysis
