@@ -1,0 +1,5 @@
+sudo -i
+
+./gradlew -Dorg.gradle.java.home=/usr/lib/jvm/java-8-openjdk-amd64 core:standalone:bootRun
+
+Visit http://172.17.0.1:3232/playground/ui/index.html
