@@ -9,12 +9,24 @@ import time
 import re
 import sys
 
+print("---------------------------------------------------------------------------------")
+print("VM Wrapper: Setting up")
+print("---------------------------------------------------------------------------------")
+
 model_dir = "../models/"+sys.argv[1]+"/"
 print("Model Directory:",model_dir)
 
 net_pre_create = os.popen("virsh net-dhcp-leases default").read()
 
+print("---------------------------------------------------------------------------------")
+print("VM Wrapper: Creating VM")
+print("---------------------------------------------------------------------------------")
+
 os.system("sh create_vm.sh")
+
+print("---------------------------------------------------------------------------------")
+print("VM Wrapper: Logging into VM")
+print("---------------------------------------------------------------------------------")
 
 while True:
 
@@ -51,6 +63,13 @@ except:
 
 print("IP Address Found:",ip)
 
+try:
+	ssh_keygen_command = "ssh-keygen -R "+ip
+	os.system(ssh_keygen_command)
+except:
+	pass
+
+
 copy_command = "sshpass -p 'admin' scp -oStrictHostKeyChecking=no -r "+model_dir+" ubuntu@"+ip+":/home/ubuntu/ml/"
 copy_install_command = "sshpass -p 'admin' scp -oStrictHostKeyChecking=no -r installPackages.sh ubuntu@"+ip+":/home/ubuntu/ml/"
 install_command = "sshpass -p 'admin' ssh ubuntu@"+ip+" 'sh /home/ubuntu/ml/installPackages.sh'"
@@ -65,11 +84,19 @@ while True:
 	else:
 		break
 
+print("---------------------------------------------------------------------------------")
+print("VM Wrapper: Installing Packages")
+print("---------------------------------------------------------------------------------")
+
 print(copy_install_command)
 os.system(copy_install_command)
 
 print(install_command)
 os.system(install_command)
+
+print("---------------------------------------------------------------------------------")
+print("VM Wrapper: Starting Model")
+print("---------------------------------------------------------------------------------")
 
 print(start_command)
 os.system(start_command)
