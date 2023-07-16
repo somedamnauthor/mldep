@@ -8,7 +8,7 @@ url = 'http://localhost:5000/predict'
 pool = ThreadPoolExecutor(100)
 
 sender = lambda data: requests.post(
-    'http://localhost:5000/predict',
+    url,
     headers={},
     data=data
 )
@@ -32,18 +32,14 @@ with open('wait_times.csv', 'r') as f:
             row = [element for element in row]
         wait_times.append(row)
 
-# wait_times = [1000, 3000]
-
 data = {'data': 'My heart! I [MASK] her!'}
 
 for oneM_waits in wait_times:
 
     print("Number of requests being sent this minute:",len(oneM_waits))
 
-    # for wait_time in oneM_waits:
-    #     pool.submit(sender, data)
-    #     time.sleep(wait_time/1000)
+    for wait_time in oneM_waits:
+        pool.submit(sender, data)
+        time.sleep(int(wait_time)/1000)
 
     break
-
-# print("done:",end-start)
