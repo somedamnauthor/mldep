@@ -31,6 +31,13 @@ The server is being hosted at port 3233
 
 ```
 ./wsk action create test1 --docker custom_ml_runtime:latest exps/test-torch.py
+
+./wsk action create test1 --docker somedamnauthor/custom_ml_runtime:latest exps/test-torch.py
 ```
 
+# Invoke action
+
+```
+./wsk action invoke test1 --result
+```
 
