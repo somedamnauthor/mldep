@@ -16,4 +16,3 @@ Models
 
 
 jq -ncM '{method: "POST", url: "http://localhost:5000/predict", body: {"data": "My heart! I [MASK] her!"} | @base64}'  | vegeta attack --format=json -duration=1s -rate=1 | vegeta report --type=text
-
