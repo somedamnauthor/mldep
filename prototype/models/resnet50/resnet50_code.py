@@ -50,6 +50,6 @@ class Model:
         score = prediction[class_id].item()
         category_name = weights.meta["categories"][class_id]
         
-        print(f"{category_name}: {100 * score:.1f}%")
+        # print(f"{category_name}: {100 * score:.1f}%")
 
         return category_name

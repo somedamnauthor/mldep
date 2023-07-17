@@ -12,6 +12,8 @@ pwd
 
 sudo docker build -t "${1}" .
 
-sudo docker run -d -p 5000:5000 "${1}"
+sudo docker run --name "${1}" -d -p 5000:5000 "${1}" 
 
 rm Dockerfile
+
+sudo docker logs -f "${1}"
