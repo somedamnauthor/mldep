@@ -15,3 +15,4 @@ Also refer to the READMEs of the respective sub-folders in the repo
 1. Go
 2. OpenWhisk - https://openwhisk.apache.org/documentation.html#openwhisk_deployment
 3. OpenWhisk CLI - https://github.com/apache/openwhisk-cli/releases/tag/1.2.0
+4. Gradle

@@ -22,4 +22,8 @@ RUN pip3 install gevent
 
 COPY . /
 
+ENV FLASK_PROXY_PORT=8080
+
+EXPOSE 8080
+
 CMD python3 /pythonAction/pythonrunner.py
