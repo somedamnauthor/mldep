@@ -1,5 +1,12 @@
 Check out https://openwhisk.apache.org/documentation.html#openwhisk_deployment for comprehensive setup guide
 
+# Requirements
+
+1. Go
+2. Java 8
+3. Docker
+
+
 # Setup OpenWhisk
 
 ```
