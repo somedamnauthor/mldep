@@ -64,4 +64,4 @@ def main(args):
 
     # return {"output": args['data']}
             
-    return {"output": prediction}
+    return {"output": [prediction, out]}
