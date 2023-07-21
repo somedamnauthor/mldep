@@ -21,7 +21,7 @@ def predict():
 	if request.method == 'POST':
 
 		# Get data
-		data = request.form['data']
+		data = request.json['data']
 
 		# Call the pre-processing step and recieve pre-processed data back
 		prepro_start = time.time()

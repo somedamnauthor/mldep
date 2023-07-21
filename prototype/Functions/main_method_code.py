@@ -1,13 +1,13 @@
 
 
+# Instantiate model
+model = Model()
+model_definition = model.model_definition()
+
 from datetime import datetime
 import time
 
 def main(args):
-
-    # Instantiate model
-    model = Model()
-    model_definition = model.model_definition()
 
     timestamp = datetime.utcnow().isoformat()
 
