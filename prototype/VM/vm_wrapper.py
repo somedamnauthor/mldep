@@ -16,6 +16,8 @@ print("-------------------------------------------------------------------------
 model_dir = "../models/"+sys.argv[1]+"/"
 print("Model Directory:",model_dir)
 
+lb_config_path = "../loadbalancer/haproxy.cfg"
+
 net_pre_create = os.popen("virsh net-dhcp-leases default").read()
 
 print("---------------------------------------------------------------------------------")
@@ -73,7 +75,8 @@ except:
 copy_command = "sshpass -p 'admin' scp -oStrictHostKeyChecking=no -r "+model_dir+" ubuntu@"+ip+":/home/ubuntu/ml/"
 copy_install_command = "sshpass -p 'admin' scp -oStrictHostKeyChecking=no -r installPackages.sh ubuntu@"+ip+":/home/ubuntu/ml/"
 install_command = "sshpass -p 'admin' ssh ubuntu@"+ip+" 'sh /home/ubuntu/ml/installPackages.sh'"
-start_command = "sshpass -p 'admin' ssh ubuntu@"+ip+" 'cd /home/ubuntu/ml; python3 wrapper.py'"
+# start_command = "sshpass -p 'admin' ssh ubuntu@"+ip+" 'cd /home/ubuntu/ml; python3 wrapper.py'"
+start_command = "sshpass -p 'admin' ssh ubuntu@"+ip+" 'cd /home/ubuntu/ml; nohup python3 wrapper.py > applogs.txt 2>&1 &'"
 
 print(copy_command)
 while True:
@@ -100,3 +103,12 @@ print("-------------------------------------------------------------------------
 
 print(start_command)
 os.system(start_command)
+
+print("---------------------------------------------------------------------------------")
+print("VM Wrapper: Adding backend to loadbalancer")
+print("---------------------------------------------------------------------------------")
+
+lb_conf_command = "echo '  server "+sys.argv[1]+"_vm1 "+ip+":5000 check' >> "+lb_config_path
+print(lb_conf_command)
+os.system(lb_conf_command)
+os.system("sudo docker kill -s HUP haproxy")
