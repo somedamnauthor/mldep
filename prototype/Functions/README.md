@@ -1,6 +1,9 @@
-# Usage
+### Setup OpenWhisk
 
 Refer to OpenWhisk_Setup/README.md first to set up OpenWhisk
+
+If OpenWhisk is already set up, proceed with deploying the function
+
 
 ### Deploy function
 
@@ -21,6 +24,7 @@ sh function_deploy.sh /home/ubuntu/openwhisk bert
 The ```function_deploy.sh``` script first creates the function code by stitching together the user-provided model code and an MLDep-provided main method, following which it creates an OpenWhisk action using the stitched code.
 
 NOTE: When executed for the first time, the script will pull a docker image containing the action runtime. This image acts as the runtime for all models, and thus is not pulled multiple times.
+
 
 ### Undeploy function
 

@@ -1,4 +1,5 @@
-Check out https://openwhisk.apache.org/documentation.html#openwhisk_deployment for comprehensive setup guide
+This README provides instructions on how to setup OpenWhisk in Standalone mode. Check out https://openwhisk.apache.org/documentation.html#openwhisk_deployment for a comprehensive setup guide in case there's any trouble with the following steps, or if you want to deploy OpenWhisk using Docker Compose, Kubernetes or Ansible.
+
 
 # Requirements
 
@@ -14,6 +15,7 @@ git clone https://github.com/apache/openwhisk.git
 
 cd openwhisk
 ```
+
 
 # Edit Config for action memory limit
 
@@ -33,19 +35,6 @@ Edit the following lines, set max to 1024 m
 ```
 
 
-# Start OpenWhisk in Standalone mode, built using Gradle
-
-```
-cd <openwhisk dir>
-
-./gradlew -Dorg.gradle.java.home=/usr/lib/jvm/java-8-openjdk-amd64 core:standalone:bootRun --args="--api-gw"
-```
-
-Visit ```http://172.17.0.1:3232/playground/ui/index.html``` to see the playground. 
-
-The server is being hosted at port 3233
-
-
 # Setup OpenWhisk CLI
 
 Visit ```https://github.com/apache/openwhisk-cli/releases```
@@ -62,6 +51,20 @@ cp wsk /usr/local/bin/wsk
 
 Alternatively you could add your current OpenWhisk installation directory to the PATH variable - Refer to https://linuxize.com/post/how-to-add-directory-to-path-in-linux/
 
+
+# Start OpenWhisk in Standalone mode, built using Gradle
+
+```
+cd <openwhisk dir>
+
+./gradlew -Dorg.gradle.java.home=/usr/lib/jvm/java-8-openjdk-amd64 core:standalone:bootRun --args="--api-gw"
+```
+
+Visit ```http://172.17.0.1:3232/playground/ui/index.html``` to see the playground. 
+
+The server is being hosted at port 3233 and the API gateway is at 3234
+
+
 # Set APIHost (Optional, only if you want to use wsk CLI separately)
 
 This, and the following steps, are optional. Placing the wsk CLI binary into the /usr/local/bin directory essentially gives the standalone JAR full control. However, if you want to test your actions out separately before deploying them via MLDep, you can try out this and the next two steps
@@ -76,6 +79,7 @@ This, and the following steps, are optional. Placing the wsk CLI binary into the
 ```
 ./wsk action create bert2 --docker somedamnauthor/custom_ml_runtime:mldepv3 exps/bert_function_code.py --memory 1024 --web=true
 ```
+
 
 # Invoke action (Optional)
 

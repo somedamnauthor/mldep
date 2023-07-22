@@ -1,14 +1,24 @@
+# To-DO
+
+Integrate loadbalancer with function deployments
+
+Write tear-down script
+
+
 # Requirements
 
 Also refer to the READMEs of the respective sub-folders in the repo
+
 
 ### Container Deployment
 
 1. Docker
 
+
 ### VM Deployment
 
 1. Libvirt, virtinst - https://sumit-ghosh.com/posts/create-vm-using-libvirt-cloud-images-cloud-init/
+
 
 ### Function Deployment
 
