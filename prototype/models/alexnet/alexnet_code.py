@@ -13,11 +13,18 @@ import os
 import sys
 import warnings
 warnings.filterwarnings("ignore")
-
+import requests
 
 class Model:
 
     def model_definition(self):
+
+        try:
+            classes_file_url = "https://raw.githubusercontent.com/somedamnauthor/mldep/master/prototype/models/alexnet/imagenet_classes.txt"
+            classes_file = requests.get(classes_file_url)
+            open('imagenet_classes.txt', 'wb').write(classes_file.content)
+        except:
+            pass
 
         alexnet = models.alexnet(pretrained=True)
         alexnet.eval()
@@ -50,8 +57,11 @@ class Model:
         dir_path = sys.path[0]
         classes_path = dir_path + "/imagenet_classes.txt"
 
-        with open(classes_path) as f:
-            classes = [line.strip() for line in f.readlines()]
+        try:
+            with open(classes_path) as f:
+                classes = [line.strip() for line in f.readlines()]
+        except:
+            return "ERROR, couldn't find classes file"
 
         out = model(batch_t)
         _, index = torch.max(out, 1)
