@@ -1,11 +1,11 @@
-### Setup OpenWhisk
+# Setup OpenWhisk
 
 Refer to OpenWhisk_Setup/README.md first to set up OpenWhisk
 
 If OpenWhisk is already set up, proceed with deploying the function
 
 
-### Deploy function
+# Deploy function
 
 1. Place model files inside appropriately named folder inside the ```../models``` directory
 
@@ -26,7 +26,7 @@ The ```function_deploy.sh``` script first creates the function code by stitching
 NOTE: When executed for the first time, the script will pull a docker image containing the action runtime. This image acts as the runtime for all models, and thus is not pulled multiple times.
 
 
-### Undeploy function
+# Undeploy function
 
 The following command deletes the action and removes the stitched code file
 ```
