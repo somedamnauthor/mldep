@@ -35,6 +35,8 @@ echo "----------------------------------------------------"
 echo "Function Wrapper: Acquiring API endpoint"
 echo "----------------------------------------------------"
 
+set -x
+
 regex='http://[^ >]+'
 
 result=$(echo "$output" | grep -Eo "$regex" | head -1)

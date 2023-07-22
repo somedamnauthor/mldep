@@ -1,7 +1,7 @@
 # To-DO
 
-Integrate loadbalancer with function deployments
-
+Write haproxy config creation for VM deployments
+Test multi-model
 Write tear-down script
 
 

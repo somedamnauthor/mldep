@@ -104,11 +104,11 @@ print("-------------------------------------------------------------------------
 print(start_command)
 os.system(start_command)
 
-print("---------------------------------------------------------------------------------")
-print("VM Wrapper: Adding backend to loadbalancer")
-print("---------------------------------------------------------------------------------")
+# print("---------------------------------------------------------------------------------")
+# print("VM Wrapper: Adding backend to loadbalancer")
+# print("---------------------------------------------------------------------------------")
 
-lb_conf_command = "echo '  server "+sys.argv[1]+"_vm1 "+ip+":5000 check' >> "+lb_config_path
-print(lb_conf_command)
-os.system(lb_conf_command)
-os.system("sudo docker kill -s HUP haproxy")
+# lb_conf_command = "echo '  server "+sys.argv[1]+"_vm1 "+ip+":5000 check' >> "+lb_config_path
+# print(lb_conf_command)
+# os.system(lb_conf_command)
+# os.system("sudo docker kill -s HUP haproxy")
