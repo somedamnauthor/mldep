@@ -1,3 +1,3 @@
-sudo docker rm -f bert haproxy
+sudo docker rm -f ${1} haproxy
 
-wsk action delete bert
+wsk action delete ${1}
