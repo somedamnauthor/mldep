@@ -1,0 +1,4 @@
+>>> torch.__version__
+'2.0.1+rocm5.4.2'
+>>> torchvision.__version__
+'0.15.2+rocm5.4.2'
