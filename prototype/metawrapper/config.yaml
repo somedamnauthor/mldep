@@ -1,0 +1,4 @@
+model: gpt2
+container: "true"
+function: "false"
+vm: "true"
