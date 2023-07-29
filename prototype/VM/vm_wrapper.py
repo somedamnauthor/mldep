@@ -57,6 +57,8 @@ for line in fstring:
    except:
        pass
 
+ip = ""
+
 #displaying the extracted IP addresses
 try:
     ip = lst[0][:-3]
@@ -64,6 +66,9 @@ except:
     pass
 
 print("IP Address Found:",ip)
+
+with open('ip_out.txt', "w") as file:
+	file.write(ip)
 
 try:
 	ssh_keygen_command = "ssh-keygen -R "+ip

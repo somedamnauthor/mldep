@@ -33,8 +33,9 @@ echo "MLDep: Checking for Container Deployment"
 echo "----------------------------------------------------"
 
 if [ "$container" = "true" ]; then
-  cd ../Container
+  cd ../Container/lightweight/
   sh container_wrapper.sh $model
+  cd ..
 fi
 
 echo "----------------------------------------------------"

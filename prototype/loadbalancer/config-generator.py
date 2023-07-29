@@ -42,6 +42,17 @@ if container=="true":
 	proxy_frontend_additions = proxy_frontend_additions + "\n\nfrontend proxy-in2\n  bind :6002\n  mode http\n  use_backend container"
 	backend_additions = backend_additions + "\n\nbackend container\n  server container1 "+model+":5000 check"
 
+if vm=="true":
+	
+	# Read the content of the file into a string
+	with open("../VM/ip_out.txt", "r") as file:
+	    ip = file.read()
+	print("ip:",ip)
+
+	proxy_backend_additions = proxy_backend_additions + "\n  server proxy-server-3 localhost:6003"
+	proxy_frontend_additions = proxy_frontend_additions + "\n\nfrontend proxy-in3\n  bind :6003\n  mode http\n  use_backend vm"
+	backend_additions = backend_additions + "\n\nbackend vm\n  server vm1 "+ip+":5000 check"
+
 with open("mod-config.cfg", 'a') as file:
     file.write(proxy_backend_additions)
     file.write(proxy_frontend_additions)
