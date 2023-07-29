@@ -34,7 +34,7 @@ def predict():
 		predict_time = time.time() - predict_start
 		output = {'prediction':prediction}
 
-		out = [timestamp, prepro_time, predict_time, (prepro_time+predict_time)]
+		out = [prediction, timestamp, prepro_time, predict_time, (prepro_time+predict_time)]
 
 		with open('log.csv', 'a') as file:
 			file.write(str(out) + '\n')
