@@ -15,18 +15,39 @@ eval "$(python3 - <<END
 import yaml
 
 with open('config.yaml', 'r') as file:
-    data = yaml.load(file, Loader=yaml.Loader)
+    data = yaml.safe_load(file)
 
-for key, value in data.items():
-    print(f"export {key}='{str(value)}'")
+def flatten_dict(d, parent_key='', sep='_'):
+    items = []
+    for k, v in d.items():
+        new_key = parent_key + sep + k if parent_key else k
+        if isinstance(v, dict):
+            items.extend(flatten_dict(v, new_key, sep=sep).items())
+        else:
+            items.append((new_key, v))
+    return dict(items)
+
+flattened_data = flatten_dict(data)
+
+for key, value in flattened_data.items():
+    print(f"export {key}='{value}'")
 END
 )"
 
+# # Source the temporary file to set the environment variables
+# source temp_env_vars.txt
+
+# # Remove the temporary file
+# rm temp_env_vars.txt
+
 # Example: Using the variables in the rest of the script
 echo "Model: $model"
-echo "Container: $container"
-echo "Function: $function"
-echo "VM: $vm"
+echo "Function Weight: $function_weight"
+echo "Function Deploy: $function_deploy"
+echo "Container Weight: $container_weight"
+echo "Container Deploy: $container_deploy"
+echo "VM Weight: $vm_weight"
+echo "VM Deploy: $vm_deploy"
 
 echo "----------------------------------------------------"
 echo "MLDep: Starting HAProxy with initial config"
@@ -46,7 +67,7 @@ echo "----------------------------------------------------"
 echo "MLDep: Checking for Container Deployment"
 echo "----------------------------------------------------"
 
-if [ "$container" = "true" ]; then
+if [ "$container_deploy" = "true" ]; then
   cd ../Container/lightweight/
   sh container_wrapper.sh $model
   cd ..
@@ -56,7 +77,7 @@ echo "----------------------------------------------------"
 echo "MLDep: Checking for VM Deployment"
 echo "----------------------------------------------------"
 
-if [ "$vm" = "true" ]; then
+if [ "$vm_deploy" = "true" ]; then
   cd ../VM
   python3 vm_wrapper.py $model
 fi
@@ -65,7 +86,7 @@ echo "----------------------------------------------------"
 echo "MLDep: Checking for Function Deployment"
 echo "----------------------------------------------------"
 
-if [ "$function" = "true" ]; then
+if [ "$function_deploy" = "true" ]; then
   cd ../Functions
   sh function_deploy.sh /home/srishankar/openwhisk $model
 fi
@@ -80,7 +101,7 @@ cd ../loadbalancer
 
 cp fresh-to-mod.cfg mod-config.cfg
 
-python3 config-generator.py --model $model --container $container --vm $vm --func $function
+python3 config-generator.py --model $model --container $container_deploy --container_weight $container_weight --vm $vm_deploy --vm_weight $vm_weight --func $function_deploy --func_weight $function_weight
 
 cp mod-config.cfg haproxy.cfg 
 

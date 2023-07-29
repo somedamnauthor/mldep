@@ -1,4 +1,13 @@
 model: gpt2
-container: "true"
-function: "false"
-vm: "true"
+
+function:
+  deploy: "false"
+  weight: 0.8
+  
+container:
+  deploy: "true"
+  weight: 70
+  
+vm:
+  deploy: "true"
+  weight: 30
