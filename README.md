@@ -1,9 +1,7 @@
 # To-DO
 
-Write haproxy config creation for VM deployments
-Test multi-model
-Write tear-down script
-
+1. Teardown from yaml
+2. comments for mldep.sh
 
 # Requirements
 
