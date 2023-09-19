@@ -7,9 +7,8 @@ import os
 import random
 
 url = 'http://localhost:6000/predict'
-# contexts = "data/context/masked_sentences.txt"
-# contexts = "data/caching/sentences.txt"
-contexts = "data/prompts/sentences.txt"
+contexts = "data/context/masked_sentences.txt"
+# contexts = "data/prompts/sentences.txt"
 
 # Read the contents of 'masked_sentences.txt' into a list
 with open(contexts, 'r') as file:

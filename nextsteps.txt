@@ -1,0 +1,11 @@
+take vm options from user
+
+take custom_dockerfile option from the user
+
+Refer to design anti-patterns paper for dscussing anti-patterns in MLDep - Hidden Technical Debts in Machine Learning Systems
+
+Take user option for container runtime for loadbalancer
+
+Take user trace option for loadgeneration
+
+Multiple deployments of the same type

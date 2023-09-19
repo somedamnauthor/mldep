@@ -35,9 +35,3 @@ set -x
 sudo docker run --name "${1}" --net mldep_net -p 5000:5000 -d "${1}" 
 
 rm Dockerfile
-
-# echo "  server ${1}_container1 ${1}:5000 check" >> ../../loadbalancer/haproxy.cfg
-
-# sudo docker kill -s HUP haproxy
-
-# sudo docker logs -f "${1}"

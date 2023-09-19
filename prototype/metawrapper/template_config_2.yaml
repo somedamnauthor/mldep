@@ -7,7 +7,7 @@ function:
   # Deploy the function (true/false)
   deploy: "false"
   # Weight for function routing (0 to 100)
-  weight: 20
+  weight: 0
 
 # Container deployment specifications
 container:
@@ -15,10 +15,16 @@ container:
   deploy: "true"
   # Weight for container routing (0 to 100)
   weight: 100
+  # Container runtime, specify docker / podman
+  runtime: docker
+  # GPU requirements for containers (true/false)
+  gpu: "false"
+  # Use default or user-provided dockerfile. Custom dockerfiles are 
+  custom-dockerfile: "false"
 
 # VM deployment specifications
 vm:
   # Deploy the VM (true/false)
   deploy: "false"
   # Weight for VM routing (0 to 100)
-  weight: 100
+  weight: 0
