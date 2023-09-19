@@ -1,7 +1,11 @@
 # To-DO
 
+* Multiple instances of each deployment
+* Specify cpu cores for containers and VMs
 1. Teardown from yaml
 2. comments for mldep.sh
+3. README for loadgen
+4. Template requestsender for loadgen
 
 # Requirements
 
