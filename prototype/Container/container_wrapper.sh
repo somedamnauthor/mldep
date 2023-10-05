@@ -22,7 +22,7 @@ set -x
 
 cd "${destination}/"
 
-sudo docker build -t "${1}" .
+docker build -t "${1}" .
 
 set +x
 
@@ -32,7 +32,7 @@ echo "----------------------------------------------------"
 
 set -x
 
-sudo docker run --name "${1}" --net mldep_net -d "${1}" 
+docker run --name "${1}" --net mldep_net -d "${1}" 
 
 rm Dockerfile
 

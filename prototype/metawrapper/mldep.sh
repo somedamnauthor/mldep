@@ -107,7 +107,7 @@ cp mod-config.cfg haproxy.cfg
 
 echo "" >> haproxy.cfg
 
-sudo docker kill -s HUP haproxy
+docker kill -s HUP haproxy
 
 set +x
 
