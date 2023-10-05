@@ -1,8 +1,10 @@
 #cp base_images/jammy-server-cloudimg-amd64.img jammy-server-cloudimg-amd64.img
 
-cp base_images/focal-server-cloudimg-amd64.img base_images/focal.img
+#cp base_images/focal-server-cloudimg-amd64.img base_images/focal.img
 
-qemu-img create -b base_images/focal.img -f qcow2 -F qcow2 mldepimg.img 20G
+cp /var/scratch/ssundar/focal-server-cloudimg-amd64.img /var/scratch/ssundar/focal.img
+
+qemu-img create -b /var/scratch/ssundar/focal.img -f qcow2 -F qcow2 mldepimg.img 20G
 
 genisoimage -output cidata.iso -V cidata -r -J user-data meta-data
 
