@@ -2,6 +2,12 @@
 Pre-requisites: Place model files in a folder in the models directory (one level above)
 
 Sample usage: python3 vm_wrapper.py image_classification 3 true /home/img/
+
+# {1} - model
+# {2} - instances
+# {3} - root access for libvirt
+# {4} - cloud image dir
+
 """
 
 import os
@@ -36,9 +42,14 @@ for i in range(1, int(sys.argv[2])+1):
 	print("VM Wrapper: Logging into VM "+str(i))
 	print("---------------------------------------------------------------------------------")
 
+	if sys.argv[3] == "true":
+		net_command = "virsh net-dhcp-leases default"
+	else:
+		net_command = "virsh -c qemu:///system net-dhcp-leases default"
+
 	while True:
 
-		net_post_create = os.popen("virsh net-dhcp-leases default").read()
+		net_post_create = os.popen(net_command).read()
 
 		if net_pre_create != net_post_create:
 
