@@ -44,12 +44,12 @@ fi
 
 # TEARDOWN BEGINS
 
-containers=$($container_perm_string docker ps -a --format "{{.Names}}" | grep "^${1}")
+containers=$($lb_perm_string docker ps -a --format "{{.Names}}" | grep "^${1}")
 
 # Loop through and remove each container
 for container in $containers; do
     echo "Removing container: $container"
-    sudo docker rm -f "$container"
+    $lb_perm_string docker rm -f "$container"
 done
 
 $lb_perm_string docker rm -f haproxy
