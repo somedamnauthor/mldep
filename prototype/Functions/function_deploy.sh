@@ -17,7 +17,14 @@ echo "----------------------------------------------------"
 
 set -x
 
-${1}/wsk action create ${2} --docker somedamnauthor/custom_ml_runtime:mldepv5 ${2}_function_code.py --memory 1024 --web true
+number=$3
+# Loop to run the wsk action create command 'number' times
+for i in $(seq 1 $number); do
+    action_name="${2}$i"
+    ${1}/wsk action create $action_name --docker somedamnauthor/custom_ml_runtime:mldepv5 ${2}_function_code.py --memory 1024 --web true
+done
+
+# ${1}/wsk action create ${2} --docker somedamnauthor/custom_ml_runtime:mldepv5 ${2}_function_code.py --memory 1024 --web true
 
 set +x
 
@@ -27,23 +34,29 @@ echo "----------------------------------------------------"
 
 set -x
 
-output=$(${1}/wsk api create /predict post ${2})
+# output=$(${1}/wsk api create /predict post ${2})
 
-set +x
+# Loop to run the wsk api command 'number' times
+for i in $(seq 1 $number); do
+    action_name="${2}$i"
+    ${1}/wsk api create /$action_name /predict post $action_name
+done
 
-echo "----------------------------------------------------"
-echo "Function Wrapper: Acquiring API endpoint"
-echo "----------------------------------------------------"
+# set +x
 
-set -x
+# echo "----------------------------------------------------"
+# echo "Function Wrapper: Acquiring API endpoint"
+# echo "----------------------------------------------------"
 
-regex='http://[^ >]+'
+# set -x
 
-result=$(echo "$output" | grep -Eo "$regex" | head -1)
+# regex='http://[^ >]+'
 
-result=${result%/predict}
+# result=$(echo "$output" | grep -Eo "$regex" | head -1)
 
-result=$(echo "$result" | sed 's|http://||g')
+# result=${result%/predict}
+
+# result=$(echo "$result" | sed 's|http://||g')
 
 #echo "  server ${2}_function1 $result check" >> ../loadbalancer/haproxy.cfg
 

@@ -44,10 +44,13 @@ END
 echo "Model: $model"
 echo "Function Weight: $function_weight"
 echo "Function Deploy: $function_deploy"
+echo "Function Instances: $function_instances"
 echo "Container Weight: $container_weight"
 echo "Container Deploy: $container_deploy"
+echo "Container Instances: $container_instances"
 echo "VM Weight: $vm_weight"
 echo "VM Deploy: $vm_deploy"
+echo "VM Instances: $vm_instances"
 
 echo "----------------------------------------------------"
 echo "MLDep: Starting HAProxy with initial config"
@@ -69,7 +72,7 @@ echo "----------------------------------------------------"
 
 if [ "$container_deploy" = "true" ]; then
   cd ../Container/lightweight/
-  sh container_wrapper.sh $model
+  sh container_wrapper.sh $model $container_instances
   cd ..
 fi
 
@@ -79,7 +82,7 @@ echo "----------------------------------------------------"
 
 if [ "$vm_deploy" = "true" ]; then
   cd ../VM
-  python3 vm_wrapper.py $model
+  python3 vm_wrapper.py $model $vm_instances
 fi
 
 echo "----------------------------------------------------"
@@ -88,7 +91,7 @@ echo "----------------------------------------------------"
 
 if [ "$function_deploy" = "true" ]; then
   cd ../Functions
-  sh function_deploy.sh /home/srishankar/openwhisk $model
+  sh function_deploy.sh /home/srishankar/openwhisk $model $function_instances
 fi
 
 echo "----------------------------------------------------"
@@ -101,7 +104,19 @@ cd ../loadbalancer
 
 cp fresh-to-mod.cfg mod-config.cfg
 
-python3 config-generator.py --model $model --container $container_deploy --container_weight $container_weight --vm $vm_deploy --vm_weight $vm_weight --func $function_deploy --func_weight $function_weight
+# python3 config-generator.py --model $model --container $container_deploy --container_weight $container_weight --container_instances $container_instances --vm $vm_deploy --vm_weight $vm_weight --vm_instances $vm_instances --func $function_deploy --func_weight $function_weight
+
+python3 config-generator.py \
+    --model $model \
+    --container $container_deploy \
+    --container_weight $container_weight \
+    --container_instances $container_instances \
+    --vm $vm_deploy \
+    --vm_weight $vm_weight \
+    --vm_instances $vm_instances \
+    --func $function_deploy \
+    --func_weight $function_weight \
+    --func_instances $function_instances
 
 cp mod-config.cfg haproxy.cfg 
 
