@@ -52,6 +52,8 @@ echo "Container Root Access: $container_rootAccess"
 echo "VM Weight: $vm_weight"
 echo "VM Deploy: $vm_deploy"
 echo "VM Instances: $vm_instances"
+echo "VM Libvirt Root Access: $vm_rootAccess"
+echo "VM Cloud Image Directory: $vm_cloudImgDir"
 echo "Load Balancer Root Access: $lb_rootAccess"
 
 if [ $lb_rootAccess = "true" ]; then
@@ -90,7 +92,7 @@ echo "----------------------------------------------------"
 
 if [ "$vm_deploy" = "true" ]; then
   cd ../VM
-  python3 vm_wrapper.py $model $vm_instances
+  python3 vm_wrapper.py $model $vm_instances $vm_rootAccess $vm_cloudImgDir
 fi
 
 echo "----------------------------------------------------"

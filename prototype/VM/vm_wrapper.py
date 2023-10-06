@@ -1,7 +1,7 @@
 """
 Pre-requisites: Place model files in a folder in the models directory (one level above)
 
-Sample usage: python3 vm_wrapper.py image_classification 3
+Sample usage: python3 vm_wrapper.py image_classification 3 true /home/img/
 """
 
 import os
@@ -28,7 +28,8 @@ for i in range(1, int(sys.argv[2])+1):
 	print("VM Wrapper: Creating VM "+str(i))
 	print("---------------------------------------------------------------------------------")
 
-	create_command = "sh create_vm.sh "+str(i)
+	create_command = "sh create_vm.sh "+str(i)+" "+sys.argv[3]+" "+sys.argv[4]
+	print(create_command)
 	os.system(create_command)
 
 	print("---------------------------------------------------------------------------------")
@@ -100,7 +101,6 @@ for i in range(1, int(sys.argv[2])+1):
 	copy_command = "sshpass -p 'admin' scp -oStrictHostKeyChecking=no -r "+model_dir+" ubuntu@"+ip+":/home/ubuntu/ml/"
 	copy_install_command = "sshpass -p 'admin' scp -oStrictHostKeyChecking=no -r installPackages.sh ubuntu@"+ip+":/home/ubuntu/ml/"
 	install_command = "sshpass -p 'admin' ssh ubuntu@"+ip+" 'sh /home/ubuntu/ml/installPackages.sh'"
-	# start_command = "sshpass -p 'admin' ssh ubuntu@"+ip+" 'cd /home/ubuntu/ml; python3 wrapper.py'"
 	start_command = "sshpass -p 'admin' ssh ubuntu@"+ip+" 'cd /home/ubuntu/ml; nohup python3 wrapper.py > applogs.txt 2>&1 &'"
 
 	print(copy_command)
