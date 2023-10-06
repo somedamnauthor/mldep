@@ -48,9 +48,17 @@ echo "Function Instances: $function_instances"
 echo "Container Weight: $container_weight"
 echo "Container Deploy: $container_deploy"
 echo "Container Instances: $container_instances"
+echo "Container Root Access: $container_rootAccess"
 echo "VM Weight: $vm_weight"
 echo "VM Deploy: $vm_deploy"
 echo "VM Instances: $vm_instances"
+echo "Load Balancer Root Access: $lb_rootAccess"
+
+if [ $lb_rootAccess = "true" ]; then
+    lb_perm_string="sudo"
+else
+    lb_perm_string=""
+fi
 
 echo "----------------------------------------------------"
 echo "MLDep: Starting HAProxy with initial config"
@@ -72,7 +80,7 @@ echo "----------------------------------------------------"
 
 if [ "$container_deploy" = "true" ]; then
   cd ../Container/lightweight/
-  sh container_wrapper.sh $model $container_instances
+  sh container_wrapper.sh $model $container_instances $container_rootAccess
   cd ..
 fi
 
@@ -122,7 +130,7 @@ cp mod-config.cfg haproxy.cfg
 
 echo "" >> haproxy.cfg
 
-sudo docker kill -s HUP haproxy
+$lb_perm_string docker kill -s HUP haproxy
 
 set +x
 

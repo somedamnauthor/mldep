@@ -14,17 +14,24 @@ function:
 # Container deployment specifications
 container:
   # Deploy the container (true/false)
-  deploy: "false"
+  deploy: "true"
   # Weight for container routing (0 to 100)
   weight: 100
   # Instances (0 to any)
-  instances: 2
+  instances: 1
+  # Do you have root access for Docker (true/false)
+  rootAccess: "true"
 
 # VM deployment specifications
 vm:
   # Deploy the VM (true/false)
-  deploy: "true"
+  deploy: "false"
   # Weight for VM routing (0 to 100)
   weight: 100
   # Instances (0 to any)
   instances: 2
+
+# Load-balancer specifications
+lb:
+  # Do you have root access for Docker (true/false)
+  rootAccess: "true"
