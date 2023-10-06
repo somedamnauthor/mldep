@@ -69,7 +69,7 @@ set -x
 
 cd ../loadbalancer
 
-sh deploy_lb.sh
+sh deploy_lb.sh $lb_rootAccess
 
 set +x
 
