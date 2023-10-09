@@ -64,6 +64,6 @@ for action in $actions; do
     wsk action delete "$action"
 done
 
-rm ../Functions/${1}_model_code.py
+rm ../Functions/${1}_function_code.py
 
 sh ../VM/remove_vm.sh $vm_rootAccess $vm_instances

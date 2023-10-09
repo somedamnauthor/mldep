@@ -21,7 +21,8 @@ number=$3
 # Loop to run the wsk action create command 'number' times
 for i in $(seq 1 $number); do
     action_name="${2}$i"
-    ${1}/wsk action create $action_name --docker somedamnauthor/custom_ml_runtime:mldepv5 ${2}_function_code.py --memory 1024 --web true
+    # ${1}/wsk action create $action_name --docker somedamnauthor/custom_ml_runtime:mldepv5 ${2}_function_code.py --memory 1024 --web true
+    wsk action create $action_name --docker somedamnauthor/custom_ml_runtime:mldepv5 ${2}_function_code.py --memory 1024 --web true
 done
 
 # ${1}/wsk action create ${2} --docker somedamnauthor/custom_ml_runtime:mldepv5 ${2}_function_code.py --memory 1024 --web true
@@ -39,7 +40,8 @@ set -x
 # Loop to run the wsk api command 'number' times
 for i in $(seq 1 $number); do
     action_name="${2}$i"
-    ${1}/wsk api create /$action_name /predict post $action_name
+    # ${1}/wsk api create /$action_name /predict post $action_name
+    wsk api create /$action_name /predict post $action_name
 done
 
 # set +x

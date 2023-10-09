@@ -45,6 +45,7 @@ echo "Model: $model"
 echo "Function Weight: $function_weight"
 echo "Function Deploy: $function_deploy"
 echo "Function Instances: $function_instances"
+echo "OpenWhisk Path: $function_openwhiskPath"
 echo "Container Weight: $container_weight"
 echo "Container Deploy: $container_deploy"
 echo "Container Instances: $container_instances"
@@ -101,7 +102,7 @@ echo "----------------------------------------------------"
 
 if [ "$function_deploy" = "true" ]; then
   cd ../Functions
-  sh function_deploy.sh /home/srishankar/openwhisk $model $function_instances
+  sh function_deploy.sh $function_openwhiskPath $model $function_instances
 fi
 
 echo "----------------------------------------------------"

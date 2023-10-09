@@ -10,6 +10,8 @@ function:
   weight: 100
   # Instances (0 to any)
   instances: 1
+  # Path to OpenWhisk installation
+  openwhiskPath: "/home/srishankar/openwhisk"
 
 # Container deployment specifications
 container:
@@ -20,7 +22,7 @@ container:
   # Instances (0 to any)
   instances: 1
   # Do you have root access for Docker (true/false)
-  rootAccess: "false"
+  rootAccess: "true"
 
 # VM deployment specifications
 vm:
@@ -38,4 +40,4 @@ vm:
 # Load-balancer specifications
 lb:
   # Do you have root access for Docker (true/false)
-  rootAccess: "false"
+  rootAccess: "true"
