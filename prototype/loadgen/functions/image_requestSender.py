@@ -50,6 +50,7 @@ import concurrent.futures
 async def main():
     loop = asyncio.get_event_loop()
     responses = []  # List to store responses
+    latencies = []
     
     async def send_request(wait_time):
         nonlocal responses
@@ -62,9 +63,11 @@ async def main():
 
         # await asyncio.sleep(int(wait_time) / 1000)
         time.sleep(int(wait_time) / 1000)  # Use time.sleep() for precise wait
-        
+        start = time.time()
         response = await loop.run_in_executor(None, sender, data)  # Run sender in executor
-        responses.append(response.text)  # Store response
+        latency = time.time() - start
+        latencies.append(latency)
+        # responses.append(response.text)  # Store response
         
 
     # Variable to control how many minutes the loadgen should run for
@@ -97,9 +100,13 @@ async def main():
     # print(responses)
     
     # Now 'responses' list contains the responses of all requests
-    with open('responses.txt', 'w') as file:
-        for response in responses:
-            file.write(response + '\n')
+    # with open('responses.txt', 'w') as file:
+    #     for response in responses:
+    #         file.write(response + '\n')
+
+    with open('latencies.txt', 'w') as file:
+    for latency in latencies:
+        file.write(latency + '\n')
     
 # Run the event loop
 asyncio.run(main())

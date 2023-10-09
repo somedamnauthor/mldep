@@ -1,0 +1,1 @@
+vegeta attack -header "Content-Type: application/json" -rate=1/3s -targets=ptargs.txt | vegeta report

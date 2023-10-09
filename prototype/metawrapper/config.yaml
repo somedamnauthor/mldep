@@ -5,7 +5,7 @@ model: alexnet
 # Function deployment specifications
 function:
   # Deploy the function (true/false)
-  deploy: "true"
+  deploy: "false"
   # Weight for function routing (0 to 100)
   weight: 100
   # Instances (0 to any)
@@ -16,7 +16,7 @@ function:
 # Container deployment specifications
 container:
   # Deploy the container (true/false)
-  deploy: "false"
+  deploy: "true"
   # Weight for container routing (0 to 100)
   weight: 100
   # Instances (0 to any)
