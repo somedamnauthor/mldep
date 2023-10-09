@@ -26,9 +26,17 @@ print("Model Directory:",model_dir)
 with open('ip_out.txt', "w") as file:
     pass  # You can leave the block empty or use 'pass' to indicate no action
 
+
+if sys.argv[3] == "true":
+	net_command = "virsh net-dhcp-leases default"
+else:
+	net_command = "virsh -c qemu:///system net-dhcp-leases default"
+
+
 for i in range(1, int(sys.argv[2])+1):
 
-	net_pre_create = os.popen("virsh net-dhcp-leases default").read()
+	net_pre_create = os.popen(net_command).read()
+	os.popen(net_command)
 
 	print("---------------------------------------------------------------------------------")
 	print("VM Wrapper: Creating VM "+str(i))
@@ -41,11 +49,6 @@ for i in range(1, int(sys.argv[2])+1):
 	print("---------------------------------------------------------------------------------")
 	print("VM Wrapper: Logging into VM "+str(i))
 	print("---------------------------------------------------------------------------------")
-
-	if sys.argv[3] == "true":
-		net_command = "virsh net-dhcp-leases default"
-	else:
-		net_command = "virsh -c qemu:///system net-dhcp-leases default"
 
 	while True:
 

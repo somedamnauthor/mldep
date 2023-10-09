@@ -5,11 +5,11 @@ model: alexnet
 # Function deployment specifications
 function:
   # Deploy the function (true/false)
-  deploy: "false"
+  deploy: "true"
   # Weight for function routing (0 to 100)
   weight: 100
   # Instances (0 to any)
-  instances: 2
+  instances: 1
 
 # Container deployment specifications
 container:
@@ -25,15 +25,15 @@ container:
 # VM deployment specifications
 vm:
   # Deploy the VM (true/false)
-  deploy: "true"
+  deploy: "false"
   # Weight for VM routing (0 to 100)
   weight: 100
   # Instances (0 to any)
   instances: 1
   # Do you have root access for libvirt (true/false)
-  rootAccess: "true"
-  # Cloud-Image Directory
-  cloudImgDir: "/home/srishankar/mldep/prototype/VM/base_images"
+  rootAccess: "false"
+  # Cloud-Image Directory - Place your cloud image used for the VM here
+  cloudImgDir: "/var/scratch/ssundar"
 
 # Load-balancer specifications
 lb:

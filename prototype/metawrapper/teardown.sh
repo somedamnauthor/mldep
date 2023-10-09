@@ -66,4 +66,4 @@ done
 
 rm ../Functions/${1}_model_code.py
 
-sh ../VM/remove_vm.sh
+sh ../VM/remove_vm.sh $vm_rootAccess $vm_instances
