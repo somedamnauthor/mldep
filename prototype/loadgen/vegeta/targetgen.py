@@ -2,10 +2,10 @@ import os
 
 # Directory containing the JSON files
 # json_directory = 'image_jsons'
-json_directory = 'prompt_jsons'
+json_directory = 'mask_jsons'
 
 # Output file for post_targets.txt
-output_file = 'ptargs_prompts.txt'
+output_file = 'ptargs_masks.txt'
 
 # Initialize an empty list to store the target URLs
 target_urls = []

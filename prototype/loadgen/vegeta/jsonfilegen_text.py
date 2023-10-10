@@ -2,13 +2,15 @@ import os
 import json
 
 # Directory to store JSON files
-output_dir = 'prompt_jsons'
+# output_dir = 'prompt_jsons'
+output_dir = 'mask_jsons'
 
 # Create the output directory if it doesn't exist
 os.makedirs(output_dir, exist_ok=True)
 
 # Read sentences from the text file
-sentences_file = '../data/prompts/sentences.txt'
+# sentences_file = '../data/prompts/sentences.txt'
+sentences_file = '../data/context/masked_sentences.txt'
 
 with open(sentences_file, 'r') as file:
     sentences = file.readlines()

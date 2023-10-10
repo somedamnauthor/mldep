@@ -1,6 +1,6 @@
 # Model should be placed in the prototype/models directory with an appropriate dirname
 # Model name (<modelname>)
-model: gpt2
+model: bert
 
 # Function deployment specifications
 function:
