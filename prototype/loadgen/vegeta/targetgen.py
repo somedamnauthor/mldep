@@ -1,10 +1,10 @@
 import os
 
 # Directory containing the JSON files
-json_directory = '/home/srishankar/loadtestdata'
+json_directory = 'image_jsons'
 
 # Output file for post_targets.txt
-output_file = 'ptargs.txt'
+output_file = 'ptargs_images.txt'
 
 # Initialize an empty list to store the target URLs
 target_urls = []
