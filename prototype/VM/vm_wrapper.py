@@ -1,12 +1,13 @@
 """
 Pre-requisites: Place model files in a folder in the models directory (one level above)
 
-Sample usage: python3 vm_wrapper.py image_classification 3 true /home/img/
+Sample usage: python3 vm_wrapper.py image_classification 3 true /home/img/ 2
 
 # {1} - model
 # {2} - instances
 # {3} - root access for libvirt
 # {4} - cloud image dir
+# {5} - CPUs
 
 """
 
@@ -42,7 +43,7 @@ for i in range(1, int(sys.argv[2])+1):
 	print("VM Wrapper: Creating VM "+str(i))
 	print("---------------------------------------------------------------------------------")
 
-	create_command = "sh create_vm.sh "+str(i)+" "+sys.argv[3]+" "+sys.argv[4]
+	create_command = "sh create_vm.sh "+str(i)+" "+sys.argv[3]+" "+sys.argv[4]+" "+sys.argv[5]
 	print(create_command)
 	os.system(create_command)
 

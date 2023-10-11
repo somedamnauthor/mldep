@@ -1,4 +1,8 @@
-#sample usage: sh container_wrapper image_classification 3 true
+#sample usage: sh container_wrapper image_classification 3 true 2
+# {1}: model
+# {2}: instances
+# {3}: Root access
+# {4}: CPUs
 
 echo "----------------------------------------------------"
 echo "Container Wrapper: Setting up"
@@ -8,6 +12,12 @@ if [ "$3" = "true" ]; then
     perm_string="sudo"
 else
     perm_string=""
+fi
+
+if [ "$4" = 0 ]; then
+    cpus_string=""
+else
+    cpus_string="--cpus=${4}"
 fi
 
 set -x
@@ -50,7 +60,7 @@ set -x
 for i in $(seq 1 $number); do
     container_name="$name$i"
     host_port=$((base_port + i - 1))
-    $perm_string docker run --name "$container_name" --net mldep_net -p "$host_port:$base_port" -d "$1"
+    $perm_string docker run --name "$container_name" $cpus_string --net mldep_net -p "$host_port:$base_port" -d "$1"
     # echo "Container '$container_name' is running on port '$host_port'."
 done
 

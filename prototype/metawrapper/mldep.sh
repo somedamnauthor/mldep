@@ -49,10 +49,12 @@ echo "OpenWhisk Path: $function_openwhiskPath"
 echo "Container Weight: $container_weight"
 echo "Container Deploy: $container_deploy"
 echo "Container Instances: $container_instances"
+echo "Container CPUs: $container_cpus"
 echo "Container Root Access: $container_rootAccess"
 echo "VM Weight: $vm_weight"
 echo "VM Deploy: $vm_deploy"
 echo "VM Instances: $vm_instances"
+echo "VM CPUs: $vm_cpus"
 echo "VM Libvirt Root Access: $vm_rootAccess"
 echo "VM Cloud Image Directory: $vm_cloudImgDir"
 echo "Load Balancer Root Access: $lb_rootAccess"
@@ -83,7 +85,7 @@ echo "----------------------------------------------------"
 
 if [ "$container_deploy" = "true" ]; then
   cd ../Container/lightweight/
-  sh container_wrapper.sh $model $container_instances $container_rootAccess
+  sh container_wrapper.sh $model $container_instances $container_rootAccess $container_cpus
   cd ..
 fi
 
@@ -93,7 +95,7 @@ echo "----------------------------------------------------"
 
 if [ "$vm_deploy" = "true" ]; then
   cd ../VM
-  python3 vm_wrapper.py $model $vm_instances $vm_rootAccess $vm_cloudImgDir
+  python3 vm_wrapper.py $model $vm_instances $vm_rootAccess $vm_cloudImgDir $vm_cpus
 fi
 
 echo "----------------------------------------------------"
