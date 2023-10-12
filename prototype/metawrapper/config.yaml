@@ -16,7 +16,7 @@ function:
 # Container deployment specifications
 container:
   # Deploy the container (true/false)
-  deploy: "false"
+  deploy: "true"
   # Weight for container routing (0 to 100)
   weight: 100
   # Instances (0 to any)
@@ -24,12 +24,12 @@ container:
   # CPUs available to each instance (0 implies all CPUs used)
   cpus: 2
   # Do you have root access for Docker (true/false)
-  rootAccess: "true"
+  rootAccess: "false"
 
 # VM deployment specifications
 vm:
   # Deploy the VM (true/false)
-  deploy: "true"
+  deploy: "false"
   # Weight for VM routing (0 to 100)
   weight: 100
   # Instances (0 to any)
@@ -37,11 +37,11 @@ vm:
   # vCPUs available to each instance (0 defaults to 1 vCPU)
   cpus: 2
   # Do you have root access for libvirt (true/false)
-  rootAccess: "true"
+  rootAccess: "false"
   # Cloud-Image Directory - Place your cloud image used for the VM here
   cloudImgDir: "/home/srishankar/mldep/prototype/VM/base_images"
 
 # Load-balancer specifications
 lb:
   # Do you have root access for Docker (true/false)
-  rootAccess: "true"
+  rootAccess: "false"

@@ -16,9 +16,20 @@ fi
 
 if [ "$4" = 0 ]; then
     cpus_string=""
+    cpuset_string=""
+elif [ "$4" = 1 ]; then
+    cpus_string="--cpus=1"
+    cpuset_string="--cpuset-cpus=0"
 else
+    number=$4
+    cpuset_string="--cpuset-cpus=0-$((number - 1))"
     cpus_string="--cpus=${4}"
 fi
+
+#number=${4}
+#cpuset_cpus="0-$((number - 1))"
+
+#echo "--cpus=$number --cpuset-cpus=$cpuset_cpus"
 
 set -x
 
@@ -60,7 +71,7 @@ set -x
 for i in $(seq 1 $number); do
     container_name="$name$i"
     host_port=$((base_port + i - 1))
-    $perm_string docker run --name "$container_name" $cpus_string --net mldep_net -p "$host_port:$base_port" -d "$1"
+    $perm_string docker run --name "$container_name" $cpus_string $cpuset_string --net mldep_net -p "$host_port:$base_port" -d "$1"
     # echo "Container '$container_name' is running on port '$host_port'."
 done
 

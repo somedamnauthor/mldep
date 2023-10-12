@@ -35,7 +35,7 @@ with open('../loadsample_2.csv', 'r') as csv_file:
             file_counter += 1
 
             # Generate the Vegeta attack command with the unique output file name
-            vegeta_command = f'vegeta attack -header "Content-Type: application/json" -rate={tweets}/1m -duration=1m -targets={target_file} | vegeta encode > logs/{output_file_name}\n'
+            vegeta_command = f'./vegeta attack -header "Content-Type: application/json" -rate={tweets}/1m -duration=1m -targets={target_file} | ./vegeta encode > logs/{output_file_name}\n'
 
             # Write the generated command to the output file
             output_file.write(vegeta_command)
