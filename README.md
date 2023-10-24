@@ -1,10 +1,8 @@
 # To-DO
 
-* Specify cpu cores for containers and VMs
-1. Teardown from yaml
-2. README for loadgen
-3. Template requestsender for loadgen
-4. Verify OpenWhisk server during function deployment
+1. README for loadgen
+2. Template requestsender for loadgen
+3. Verify OpenWhisk server during function deployment
 
 # Requirements
 
