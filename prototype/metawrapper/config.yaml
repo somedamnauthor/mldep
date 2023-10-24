@@ -1,13 +1,13 @@
 # Model should be placed in the prototype/models directory with an appropriate dirname
 # Model name (<modelname>)
-model: alexnet
+model: resnet50
 
 # Function deployment specifications
 function:
   # Deploy the function (true/false)
   deploy: "false"
   # Weight for function routing (0 to 100)
-  weight: 100
+  weight: 30
   # Instances (0 to any)
   instances: 1
   # Path to OpenWhisk installation
@@ -16,20 +16,20 @@ function:
 # Container deployment specifications
 container:
   # Deploy the container (true/false)
-  deploy: "true"
+  deploy: "false"
   # Weight for container routing (0 to 100)
-  weight: 100
+  weight: 70
   # Instances (0 to any)
   instances: 1
   # CPUs available to each instance (0 implies all CPUs used)
-  cpus: 2
+  cpus: 4
   # Do you have root access for Docker (true/false)
   rootAccess: "false"
 
 # VM deployment specifications
 vm:
   # Deploy the VM (true/false)
-  deploy: "false"
+  deploy: "true"
   # Weight for VM routing (0 to 100)
   weight: 100
   # Instances (0 to any)
@@ -39,7 +39,7 @@ vm:
   # Do you have root access for libvirt (true/false)
   rootAccess: "false"
   # Cloud-Image Directory - Place your cloud image used for the VM here
-  cloudImgDir: "/home/srishankar/mldep/prototype/VM/base_images"
+  cloudImgDir: "/tmp"
 
 # Load-balancer specifications
 lb:

@@ -2,10 +2,10 @@ import os
 
 # Directory containing the JSON files
 # json_directory = 'image_jsons'
-json_directory = 'mask_jsons'
+json_directory = 'prompt_jsons'
 
 # Output file for post_targets.txt
-output_file = 'ptargs_masks.txt'
+output_file = 'ptargs_prompts.txt'
 
 # Initialize an empty list to store the target URLs
 target_urls = []
@@ -14,7 +14,7 @@ target_urls = []
 for filename in os.listdir(json_directory):
     if filename.endswith('.json'):
         # Construct the target URL for each JSON file
-        target_url = f"POST http://localhost:6000/predict\nContent-Type: application/json\n@{json_directory}/{filename}"
+        target_url = f"POST http://node116:6000/predict\nContent-Type: application/json\n@{json_directory}/{filename}"
         target_urls.append(target_url)
 
 # Write the target URLs to the output file

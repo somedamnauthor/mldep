@@ -67,10 +67,15 @@ base_port=5000
 
 set -x
 
+cpus=$4
+
 # Loop to run the Docker command 'number' times
 for i in $(seq 1 $number); do
     container_name="$name$i"
     host_port=$((base_port + i - 1))
+    cpuset_start=$((cpus * (i - 1)))
+    cpuset_end=$((cpus * i - 1))
+    cpuset_string="--cpuset-cpus=$cpuset_start-$cpuset_end"
     $perm_string docker run --name "$container_name" $cpus_string $cpuset_string --net mldep_net -p "$host_port:$base_port" -d "$1"
     # echo "Container '$container_name' is running on port '$host_port'."
 done

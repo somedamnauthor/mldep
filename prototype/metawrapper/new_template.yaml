@@ -1,0 +1,47 @@
+# Model should be placed in the prototype/models directory with an appropriate dirname
+# Model name (<modelname>)
+model: resnet50
+
+# Function deployment specifications
+function:
+  # Deploy the function (true/false)
+  deploy: "false"
+  # Weight for function routing (0 to 100)
+  weight: 100
+  # Instances (0 to any)
+  instances: 1
+  # Path to OpenWhisk installation
+  openwhiskPath: "/var/scratch/openwhisk"
+
+# Container deployment specifications
+container:
+  # Deploy the container (true/false)
+  deploy: "true"
+  # Weight for container routing (0 to 100)
+  weight: 10
+  # Instances (0 to any)
+  instances: 1
+  # CPUs available to each instance (0 implies all CPUs used)
+  cpus: 2
+  # Do you have root access for Docker (true/false)
+  rootAccess: "false"
+
+# VM deployment specifications
+vm:
+  # Deploy the VM (true/false)
+  deploy: "true"
+  # Weight for VM routing (0 to 100)
+  weight: 90
+  # Instances (0 to any)
+  instances: 1
+  # vCPUs available to each instance (0 defaults to 1 vCPU)
+  cpus: 4
+  # Do you have root access for libvirt (true/false)
+  rootAccess: "false"
+  # Cloud-Image Directory - Place your cloud image used for the VM here
+  cloudImgDir: "/tmp"
+
+# Load-balancer specifications
+lb:
+  # Do you have root access for Docker (true/false)
+  rootAccess: "false"
