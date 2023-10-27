@@ -5,4 +5,8 @@ prototype/VM/base_images/
 prototype/mlperf_inference/
 prototype/data/
 prototype/experiments/
+prototype/loadgen/vegeta/image_jsons/
+prototype/loadgen/vegeta/mask_jsons/
+prototype/loadgen/vegeta/prompt_jsons/
+prototype/loadgen/vegeta/Study/
 .ipynb_checkpoints
