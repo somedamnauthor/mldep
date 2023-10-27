@@ -2,20 +2,20 @@ import os
 import base64
 import json
 
-# Directory containing the images
-image_directory = '../data/images'
+# Get the directory containing the images from the user
+input_directory = input("Enter the path to the directory containing the images: ")
 
-# Output directory for JSON files
-output_directory = '/home/srishankar/loadtestdata'
+# Get the output directory for JSON files from the user
+output_directory = input("Enter the path to the output directory for JSON files: ")
 
 # Ensure the output directory exists
 os.makedirs(output_directory, exist_ok=True)
 
 # Loop through each image in the directory
-for filename in os.listdir(image_directory):
+for filename in os.listdir(input_directory):
     if filename.endswith(('.JPEG')):
         # Read the image data
-        with open(os.path.join(image_directory, filename), 'rb') as image_file:
+        with open(os.path.join(input_directory, filename), 'rb') as image_file:
             image_data = image_file.read()
 
         # Encode the image data to base64
@@ -33,3 +33,4 @@ for filename in os.listdir(image_directory):
             json.dump(data_dict, json_file, indent=4)
 
         print(f"Created JSON file: {json_filepath}")
+

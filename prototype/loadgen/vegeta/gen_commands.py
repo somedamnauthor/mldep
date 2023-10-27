@@ -1,14 +1,15 @@
 import csv
-import argparse
 
-# Create an argument parser to handle runtime arguments
-parser = argparse.ArgumentParser(description='Generate Vegeta attack commands')
-parser.add_argument('--scale-factor', type=float, default=1.0, help='Scale factor for tweets')
-parser.add_argument('--target-type', choices=['prompts', 'masks', 'images'], default='images', help='Target type')
-args = parser.parse_args()
+# Get the scale factor from the user
+scale_factor = float(input('Enter the scale factor for tweets (default is 1.0): ') or 1.0)
+
+# Get the target file path from the user
+target_file = input('Enter the path to the target file: ')
+
+load_file = input('Enter the path to the trace file used for the load (Eg: ../loadsample_2.csv): ')
 
 # Load the CSV file
-with open('../loadsample_2.csv', 'r') as csv_file:
+with open(load_file, 'r') as csv_file:
     csv_reader = csv.DictReader(csv_file)
 
     # Initialize a counter for the output file names
@@ -18,18 +19,10 @@ with open('../loadsample_2.csv', 'r') as csv_file:
     with open('vegeta_commands.sh', 'w') as output_file:
         for row in csv_reader:
             # Extract the 'tweets' value from the CSV row and apply the scale factor
-            tweets = int(float(row['tweets']) * args.scale_factor)
-
-            # Determine the target file based on the target type
-            if args.target_type == 'prompts':
-                target_file = 'ptargs_prompts.txt'
-            elif args.target_type == 'masks':
-                target_file = 'ptargs_masks.txt'
-            else:
-                target_file = 'ptargs_images.txt'
+            tweets = int(float(row['tweets']) * scale_factor)
 
             # Generate the output file name using the counter
-            output_file_name = f'results_{file_counter}.json'
+            output_file_name = 'results_{}.json'.format(file_counter)
 
             # Increment the counter for the next file
             file_counter += 1

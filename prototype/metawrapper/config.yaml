@@ -16,20 +16,20 @@ function:
 # Container deployment specifications
 container:
   # Deploy the container (true/false)
-  deploy: "false"
+  deploy: "true"
   # Weight for container routing (0 to 100)
-  weight: 70
+  weight: 100
   # Instances (0 to any)
   instances: 1
   # CPUs available to each instance (0 implies all CPUs used)
   cpus: 4
   # Do you have root access for Docker (true/false)
-  rootAccess: "false"
+  rootAccess: "true"
 
 # VM deployment specifications
 vm:
   # Deploy the VM (true/false)
-  deploy: "true"
+  deploy: "false"
   # Weight for VM routing (0 to 100)
   weight: 100
   # Instances (0 to any)
@@ -44,4 +44,4 @@ vm:
 # Load-balancer specifications
 lb:
   # Do you have root access for Docker (true/false)
-  rootAccess: "false"
+  rootAccess: "true"
