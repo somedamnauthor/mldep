@@ -1,4 +1,0 @@
-vegeta attack -header "Content-Type: application/json" -rate=1/3s -targets=ptargs_images.txt | vegeta report
-
-vegeta attack -header "Content-Type: application/json" -rate=5/1s -duration=10s -targets=ptargs_images.txt | vegeta encode > results.json
-cat results.json | vegeta plot > plot.html

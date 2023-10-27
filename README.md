@@ -2,7 +2,6 @@
 
 1. README for loadgen
 2. Template requestsender for loadgen
-3. Verify OpenWhisk server during function deployment
 
 # Requirements
 
