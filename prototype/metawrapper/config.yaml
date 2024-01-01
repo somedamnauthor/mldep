@@ -1,6 +1,6 @@
 # Model should be placed in the prototype/models directory with an appropriate dirname
 # Model name (<modelname>)
-model: resnet50
+model: bert
 
 # Function deployment specifications
 function:
@@ -22,7 +22,7 @@ container:
   # Instances (0 to any)
   instances: 1
   # CPUs available to each instance (0 implies all CPUs used)
-  cpus: 4
+  cpus: 2
   # Do you have root access for Docker (true/false)
   rootAccess: "true"
 
